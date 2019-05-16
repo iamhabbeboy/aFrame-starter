@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Aframe Object</title>
+    <script src="aframe-master.min.js"></script>
+    <script>
+    	AFRAME.registerComponent('button-interaction', {
+    		init: function () {
+    			let skyEl = this.el.sceneEl.querySelector('#background');
+    			this.el.addEventListener('mouseenter', function() {
+    				skyEl.setAttribute('src', '#chineseTemple');
+    			});
+    			this.el.addEventListener('mouseleave', function() {
+    				skyEl.setAttribute('src', '#backgroundInsideHouse');
+    			});
+    		}
+    	})
+    </script>
+</head>
+
+<body>
+    <a-scene>
+        <a-assets>
+            <img id="backgroundInsideHouse" crossorigin="anonymous" src="img/outside-china.jpg">
+            <img id="chineseTemple" src="img/inside-china.jpg">
+        </a-assets>
+		<a-sky src="#chineseTemple" id="background"></a-sky>
+
+        <a-plane button-interaction position="3 3 -9" height="2" width="5" color="#E21D2D" position="0 0 -4">
+        	<a-text value="Trip to China" scale="2 2 2" align="center"></a-text>
+        </a-plane>
+
+        <a-camera>
+        	<a-cursor color="#11D8C4" fuse="true" timeout="10"></a-cursor>
+        </a-camera>
+        
+        <a-entity laser-controls="hand: right"></a-entity>
+    </a-scene>
+</body>
+
+</html>
